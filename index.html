@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sample EC Session</title>
+  <title>Sample EC Session (Subscriber Only)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -25,9 +25,9 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    #publisher, #subscriber {
-      width: 320px;
-      height: 240px;
+    #subscriber {
+      width: 640px;
+      height: 480px;
       background-color: #000;
       border-radius: 8px;
       overflow: hidden;
@@ -35,9 +35,8 @@
   </style>
 </head>
 <body>
-  <h2>Sample EC Session (Vonage Unified Env)</h2>
+  <h2>Sample EC Session (Vonage Unified Env - Subscriber Only)</h2>
   <div id="videos">
-    <div id="publisher"></div>
     <div id="subscriber"></div>
   </div>
 
@@ -46,33 +45,23 @@
 
   <script>
     // Replace these with your actual session credentials
-    const APP_ID = 'fb82ffb3-2d7b-4dc7-9d35-16a95a1aa551'; // for Unified Env
-    const SESSION_ID = '2_MX5mYjgyZmZiMy0yZDdiLTRkYzctOWQzNS0xNmE5NWExYWE1NTF-fjE3NjE2Mjc0Mzg1NDh-akZCeE9XQmx6UU5XNk0yWDliQ3ZONDR0fn5-';
-    const TOKEN = '';
+    const APP_ID = 'fb82ffb3-2d7b-4dc7-9d35-16a95a1aa551'; // Unified Env
+    const SESSION_ID = '1_MX5mYjgyZmZiMy0yZDdiLTRkYzctOWQzNS0xNmE5NWExYWE1NTF-fjE3NjE2Mjk1NzUwMjJ-MWpUODZEYWxsYkwwM1UxcjJ6aXE1NjhZfn5-';
+    const TOKEN = 'eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vYW51YmlzLWNlcnRzLWMxLXVzZTEucHJvZC52MS52b25hZ2VuZXR3b3Jrcy5uZXQvandrcyIsImtpZCI6IkNOPVZvbmFnZSAxdmFwaWd3IEludGVybmFsIENBOjoxMjMyNzQ0MDA2MDgxNjU1MTIzMTUzNDc3NDU1OTM5MjcwMDIyNzkiLCJ0eXAiOiJKV1QiLCJ4NXUiOiJodHRwczovL2FudWJpcy1jZXJ0cy1jMS11c2UxLnByb2QudjEudm9uYWdlbmV0d29ya3MubmV0L3YxL2NlcnRzL2RkMjE1MGM1OTQ2OGJjODU1ZWI1YjI1YjI4YTNjNTk1In0.eyJwcmluY2lwYWwiOnsiYWNsIjp7InBhdGhzIjp7Ii8qKiI6e319fSwidmlhbUlkIjp7ImVtYWlsIjoiZmViaW4udmlqYXlAdm9uYWdlLmNvbSIsImZhbWlseV9uYW1lIjoiRmViaW4gUyBWaWpheSIsIm9yZ2FuaXphdGlvbl9pZCI6Ijk4MTQxNGE5LTJmZDQtNGQxOC1iMzdiLTQ4ZTFkOWNhMDA3YiIsImF1dGhlbnRpY2F0aW9uTWV0aG9kcyI6W3siY29tcGxldGVkX2F0IjoiMjAyNS0xMC0yOFQwNDo1Njo1OC45MzkyMzQ2NDdaIiwibWV0aG9kIjoiY29ycG9yYXRlIiwicHJvdmlkZXIiOiJ2b25hZ2UifV0sImlwUmlzayI6eyJpc19wcm94eSI6dHJ1ZSwicmlza19sZXZlbCI6ODR9LCJ0b2tlblR5cGUiOiJ2aWFtIiwiYXVkIjoicG9ydHVudXMuaWRwLnZvbmFnZS5jb20iLCJleHAiOjE3NjE2Mjk4NTksImp0aSI6ImI2ODZiZmE1LWI2NTUtNDYxNy04NWI2LWFjYTgxM2ZhMGY2ZCIsImlhdCI6MTc2MTYyOTU1OSwiaXNzIjoiVklBTS1JQVAiLCJuYmYiOjE3NjE2Mjk1NDQsInN1YiI6IjZlMDhkNzYzLTUwYzItNDc1My05YzYzLTFiNGVhZjQ5ZWEwZiJ9fSwiZmVkZXJhdGVkQXNzZXJ0aW9ucyI6eyJ2aWRlby1hcGkiOlt7ImFwaUtleSI6Ijc1ZmI5ZDU0IiwiYXBwbGljYXRpb25JZCI6ImZiODJmZmIzLTJkN2ItNGRjNy05ZDM1LTE2YTk1YTFhYTU1MSIsIm1hc3RlckFjY291bnRJZCI6IjRlNDFlMjcyIiwiY2FwYWJpbGl0aWVzIjpbImRpc2FibGUtbXVzdC1vd24tbHZuOlpaIl0sImV4dHJhQ29uZmlnIjp7InZpZGVvLWFwaSI6eyJpbml0aWFsX2xheW91dF9jbGFzc19saXN0IjoiIiwicm9sZSI6InN1YnNjcmliZXIiLCJzY29wZSI6InNlc3Npb24uY29ubmVjdCIsInNlc3Npb25faWQiOiIxX01YNW1Zamd5Wm1aaU15MHlaRGRpTFRSa1l6Y3RPV1F6TlMweE5tRTVOV0V4WVdFMU5URi1makUzTmpFMk1qazFOelV3TWpKLU1XcFVPRFpFWVd4c1lrd3dNMVV4Y2pKNmFYRTFOamhaZm41LSJ9fX1dfSwiYXVkIjoicG9ydHVudXMuaWRwLnZvbmFnZS5jb20iLCJleHAiOjE3NjE2MzEzODYsImp0aSI6IjllZGU0YzcwLWMxMmQtNDA4NC1iNmUzLTYzMTY0ZjQzYTEzMiIsImlhdCI6MTc2MTYyOTU4NiwiaXNzIjoiVklBTS1JQVAiLCJuYmYiOjE3NjE2Mjk1NzEsInN1YiI6IjZlMDhkNzYzLTUwYzItNDc1My05YzYzLTFiNGVhZjQ5ZWEwZiJ9.T-zh4IN6UTYAlTaKlJyKZBaJ3HolB2rb9-OtrFqNocoW0Iw_5v11VU_CpiBK21Z7TvR9rOcsVmyCE_8gD_hZ4069N3ZFjM_LT3qaJiAP3Vn_sacU4PqrXmSUuBb-7532PJLEor7tUGU3c5nOTkARSooPMuUPfRdfBb-ayL7wVSp1ScK2SZcQaYGthIiJZfN-eKAi2LgA3IQdANglvNxtItMArSVlFpbfPuriGbjVecwFQy71hXSiRkh5YFoBk8G8bQcv6bfN8WaV6LHCI2DUVInaLrXZv9Q4BHJI11l6G8uAQ0p6nxfk4_Acgmr-7_B-w-TL7e3bGweHNi8wQT8HTg'; // Token for the EC participant
 
     // Initialize the session
     const session = OT.initSession(APP_ID, SESSION_ID);
 
-    // Create a publisher (local camera/mic)
-    const publisher = OT.initPublisher('publisher', {
-      insertMode: 'append',
-      width: '100%',
-      height: '100%'
-    });
-
-    // Connect and publish
+    // Connect without publishing (subscriber-only)
     session.connect(TOKEN, error => {
       if (error) {
         console.error('Connection error:', error.message);
       } else {
-        session.publish(publisher, err => {
-          if (err) console.error('Publish error:', err.message);
-          else console.log('Publishing to session...');
-        });
+        console.log('Connected to session as subscriber only.');
       }
     });
 
-    // Subscribe to remote streams
+    // Subscribe to remote streams (doctor/patient video)
     session.on('streamCreated', event => {
       session.subscribe(event.stream, 'subscriber', {
         insertMode: 'append',
