@@ -2,71 +2,140 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sample EC Session (Subscriber Only)</title>
+  <title>Sample EC Session - Vonage Unified Env</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       height: 100vh;
       margin: 0;
-      background-color: #f0f4ff;
+      background-color: #f4f7ff;
       font-family: Arial, sans-serif;
     }
-    h2 {
-      color: #3366ff;
-      margin-bottom: 20px;
+
+    header {
+      width: 100%;
+      text-align: center;
+      background-color: #3366ff;
+      color: white;
+      padding: 10px 0;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
+    h3 {
+      color: #333;
+      margin-top: 15px;
+    }
+
     #videos {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
+      justify-items: center;
+      width: 90vw;
+      height: 70vh;
+      margin-top: 10px;
+      background: #dbe4ff;
+      border-radius: 10px;
+      padding: 10px;
+      overflow-y: auto;
     }
-    #subscriber {
-      width: 640px;
-      height: 480px;
+
+    .subscriber {
+      width: 100%;
+      height: 100%;
       background-color: #000;
       border-radius: 8px;
       overflow: hidden;
+      position: relative;
+    }
+
+    #placeholder {
+      color: #555;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 20%;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      color: #666;
+      font-size: 14px;
+      border-top: 1px solid #ccc;
+      margin-top: auto;
     }
   </style>
 </head>
+
 <body>
-  <h2>Sample EC Session (Vonage Unified Env - Subscriber Only)</h2>
+  <header>Sample EC Session (Vonage Unified Environment)</header>
+
+  <h3>Connected as Subscriber</h3>
+
   <div id="videos">
-    <div id="subscriber"></div>
+    <div id="placeholder">Waiting for participants to publish...</div>
   </div>
+
+  <footer>© 2025 EC Test Layout | Febin EC Demo</footer>
 
   <!-- Vonage Client SDK -->
   <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
 
   <script>
-    // Replace these with your actual session credentials
+    // 🔧 Replace with your actual credentials
     const APP_ID = 'fb82ffb3-2d7b-4dc7-9d35-16a95a1aa551'; // Unified Env
     const SESSION_ID = '2_MX5mYjgyZmZiMy0yZDdiLTRkYzctOWQzNS0xNmE5NWExYWE1NTF-fjE3NjE2Mjc0Mzg1NDh-akZCeE9XQmx6UU5XNk0yWDliQ3ZONDR0fn5-';
     const TOKEN = 'eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vYW51YmlzLWNlcnRzLWMxLXVzdzIucHJvZC52MS52b25hZ2VuZXR3b3Jrcy5uZXQvandrcyIsImtpZCI6IkNOPVZvbmFnZSAxdmFwaWd3IEludGVybmFsIENBOjoyNTk0ODAwMzI1MDMyMTQ2MjYyMzg5OTk3MzE5OTkxNzU0NDk3OTciLCJ0eXAiOiJKV1QiLCJ4NXUiOiJodHRwczovL2FudWJpcy1jZXJ0cy1jMS11c3cyLnByb2QudjEudm9uYWdlbmV0d29ya3MubmV0L3YxL2NlcnRzLzUzNWQwMmNkM2EyZjgxMGM4OTE3NDYwNmE5NDljZTJiIn0.eyJwcmluY2lwYWwiOnsiYWNsIjp7InBhdGhzIjp7Ii8qKiI6e319fSwidmlhbUlkIjp7ImVtYWlsIjoiZmViaW4udmlqYXlAdm9uYWdlLmNvbSIsImZhbWlseV9uYW1lIjoiRmViaW4gUyBWaWpheSIsIm9yZ2FuaXphdGlvbl9pZCI6Ijk4MTQxNGE5LTJmZDQtNGQxOC1iMzdiLTQ4ZTFkOWNhMDA3YiIsImF1dGhlbnRpY2F0aW9uTWV0aG9kcyI6W3siY29tcGxldGVkX2F0IjoiMjAyNS0xMC0yOFQwNDo1Njo1OC45MzkyMzQ2NDdaIiwibWV0aG9kIjoiY29ycG9yYXRlIiwicHJvdmlkZXIiOiJ2b25hZ2UifV0sImlwUmlzayI6eyJpc19wcm94eSI6dHJ1ZSwicmlza19sZXZlbCI6ODR9LCJ0b2tlblR5cGUiOiJ2aWFtIiwiYXVkIjoicG9ydHVudXMuaWRwLnZvbmFnZS5jb20iLCJleHAiOjE3NjE2MzA0OTgsImp0aSI6IjRiYzBmMTNjLWNlNmQtNDgxYS05NTkzLTU2MDYxOGRmZjc0YyIsImlhdCI6MTc2MTYzMDE5OCwiaXNzIjoiVklBTS1JQVAiLCJuYmYiOjE3NjE2MzAxODMsInN1YiI6IjZlMDhkNzYzLTUwYzItNDc1My05YzYzLTFiNGVhZjQ5ZWEwZiJ9fSwiZmVkZXJhdGVkQXNzZXJ0aW9ucyI6eyJ2aWRlby1hcGkiOlt7ImFwaUtleSI6Ijc1ZmI5ZDU0IiwiYXBwbGljYXRpb25JZCI6ImZiODJmZmIzLTJkN2ItNGRjNy05ZDM1LTE2YTk1YTFhYTU1MSIsIm1hc3RlckFjY291bnRJZCI6IjRlNDFlMjcyIiwiY2FwYWJpbGl0aWVzIjpbImRpc2FibGUtbXVzdC1vd24tbHZuOlpaIl0sImV4dHJhQ29uZmlnIjp7InZpZGVvLWFwaSI6eyJpbml0aWFsX2xheW91dF9jbGFzc19saXN0IjoiIiwicm9sZSI6Im1vZGVyYXRvciIsInNjb3BlIjoic2Vzc2lvbi5jb25uZWN0Iiwic2Vzc2lvbl9pZCI6IjJfTVg1bVlqZ3labVppTXkweVpEZGlMVFJrWXpjdE9XUXpOUzB4Tm1FNU5XRXhZV0UxTlRGLWZqRTNOakUyTWpjME16ZzFORGgtYWtaQ2VFOVhRbXg2VVU1WE5rMHlXRGxpUTNaT05EUjBmbjUtIn19fV19LCJhdWQiOiJwb3J0dW51cy5pZHAudm9uYWdlLmNvbSIsImV4cCI6MTc2MTYzMTk5OSwianRpIjoiNTJiYWQxMzgtZjE4Ny00ZWJjLTg5OTMtMDBkMmUyMDRkMTFmIiwiaWF0IjoxNzYxNjMwMTk5LCJpc3MiOiJWSUFNLUlBUCIsIm5iZiI6MTc2MTYzMDE4NCwic3ViIjoiNmUwOGQ3NjMtNTBjMi00NzUzLTljNjMtMWI0ZWFmNDllYTBmIn0.J2GMc9Pb_SuTuok0j6v-OQY1cUK3XuWyGpRKm0cbKE9guqv6bTp2BOxRjUjAFLp8Hijl7z_qoHNrjrszOU2UtNuXptsLWJySPkdrDm31ze0Up3GGWwZWS-nzGXulCHkQAAIKrsxRp2RaJ4emLNcCuDPWiCDjgNYVxqfoASQSUd2NdM2Q9QV_efE6RJ4Dt_ksqkGu5mRz4r75RVWsmrX4qeTc2yzh0cg4rb1M1GqrufOEw60aJd0CjBVrXfg4SiBeBBTD3BpcpKROg476c4En36XbWBweShykp83G_Lv_JIgoxMvl_AvTsNehAxngWNKV8btynwfHxr8mBDal0aBF7w';      
     // Initialize the session
     const session = OT.initSession(APP_ID, SESSION_ID);
 
-    // Connect without publishing (subscriber-only)
-    session.connect(TOKEN, error => {
+    session.connect(TOKEN, (error) => {
       if (error) {
         console.error('Connection error:', error.message);
       } else {
-        console.log('Connected to session as subscriber only.');
+        console.log('✅ Connected to session as subscriber only.');
       }
     });
 
-    // Subscribe to remote streams (doctor/patient video)
-    session.on('streamCreated', event => {
-      session.subscribe(event.stream, 'subscriber', {
+    // Handle new remote streams
+    session.on('streamCreated', (event) => {
+      console.log('New stream detected:', event.stream.streamId);
+
+      // Remove "waiting" placeholder if it's still there
+      const placeholder = document.getElementById('placeholder');
+      if (placeholder) placeholder.remove();
+
+      const container = document.createElement('div');
+      container.className = 'subscriber';
+      container.id = `stream-${event.stream.streamId}`;
+      document.getElementById('videos').appendChild(container);
+
+      session.subscribe(event.stream, container.id, {
         insertMode: 'append',
         width: '100%',
         height: '100%'
       });
+    });
+
+    // Handle participants leaving
+    session.on('streamDestroyed', (event) => {
+      const elem = document.getElementById(`stream-${event.stream.streamId}`);
+      if (elem) elem.remove();
+
+      // If all participants left, show placeholder again
+      if (document.querySelectorAll('.subscriber').length === 0) {
+        const placeholder = document.createElement('div');
+        placeholder.id = 'placeholder';
+        placeholder.textContent = 'Waiting for participants to publish...';
+        document.getElementById('videos').appendChild(placeholder);
+      }
     });
   </script>
 </body>
