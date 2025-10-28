@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sample EC Session</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f4ff;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      color: #3366ff;
+      margin-bottom: 20px;
+    }
+    #videos {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    #publisher, #subscriber {
+      width: 320px;
+      height: 240px;
+      background-color: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <h2>Sample EC Session (Vonage Unified Env)</h2>
+  <div id="videos">
+    <div id="publisher"></div>
+    <div id="subscriber"></div>
+  </div>
+
+  <!-- Vonage Client SDK -->
+  <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+
+  <script>
+    // Replace these with your actual session credentials
+    const APP_ID = 'YOUR_APP_ID'; // for Unified Env
+    const SESSION_ID = 'YOUR_SESSION_ID';
+    const TOKEN = 'YOUR_TOKEN';
+
+    // Initialize the session
+    const session = OT.initSession(APP_ID, SESSION_ID);
+
+    // Create a publisher (local camera/mic)
+    const publisher = OT.initPublisher('publisher', {
+      insertMode: 'append',
+      width: '100%',
+      height: '100%'
+    });
+
+    // Connect and publish
+    session.connect(TOKEN, error => {
+      if (error) {
+        console.error('Connection error:', error.message);
+      } else {
+        session.publish(publisher, err => {
+          if (err) console.error('Publish error:', err.message);
+          else console.log('Publishing to session...');
+        });
+      }
+    });
+
+    // Subscribe to remote streams
+    session.on('streamCreated', event => {
+      session.subscribe(event.stream, 'subscriber', {
+        insertMode: 'append',
+        width: '100%',
+        height: '100%'
+      });
+    });
+  </script>
+</body>
+</html>
